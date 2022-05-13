@@ -16,7 +16,7 @@ export const generateJWT = async (args) => {
     var signOptions = {
         "issuer": args.issuer,
         "subject": args.subject,
-        "audience": args.audience || "https://login.salesforce.com",
+        "audience": args.audience || "https://test.salesforce.com",
         "expiresIn": 5 * 60,
         "algorithm": "RS256",
     };
@@ -44,7 +44,7 @@ export const verifyJWT = async (args) => {
     const verifyOptions = {
         "issuer": args.issuer,
         "subject": args.subject,
-        "audience": args.audience || "https://login.salesforce.com",
+        "audience": args.audience || "https://test.salesforce.com",
         "expiresIn": 5 * 60,
         "algorithm": "RS256"
     };
@@ -63,7 +63,7 @@ export const accessTokenFromJWT = async (args) => {
     // validate
     if (!args.token) throw Error("You must supply the token key");
 
-    const url = args.audience || 'https://login.salesforce.com';
+    const url = args.audience || 'https://test.salesforce.com';
     return fetch(`${url}/services/oauth2/token`, {
         "method": "post",
         "headers": {
@@ -71,6 +71,7 @@ export const accessTokenFromJWT = async (args) => {
         },
         "body": `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${args.token}`
     }).then(resp => resp.json()).then(data => {
+        console.log(data);
         if (data.error) throw Error(`Error caught (${data.error})`);
         return data.access_token;
     })

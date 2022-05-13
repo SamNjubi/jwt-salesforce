@@ -1,6 +1,6 @@
 import {config as config_env} from "dotenv";
 import * as fs from "fs";
-import * as jwt from "../index.js";
+import * as jwt from "./index.js";
 
 config_env();
 
@@ -10,22 +10,18 @@ const audience = process.env.AUDIENCE;
 
 // read keys
 const privateKey = fs.readFileSync(process.env.PATH_PRIVATE_KEY, 'utf8');
-const publicKey = fs.readFileSync(process.env.PATH_PUBLIC_KEY, 'utf8');
 
 jwt.generateJWT({
     issuer,
-    subject,
     audience,
+    subject,
     privateKey
 }).then(token => {
-    console.log(`Json Web Token:\n${token}\n\n`);
-    return jwt.verifyJWT({
+    console.log(`JWT\n${token}`);
+    return jwt.accessTokenFromJWT({
         token,
-        subject,
-        issuer,
-        audience,
-        publicKey
+        audience
     })
-}).then(legit => {
-    console.log(`JWT verification result:\n ${JSON.stringify(legit)}`);
+}).then(accessToken => {
+    console.log(`Access token\n${accessToken}`);
 })
