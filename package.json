@@ -11,7 +11,9 @@
   "license": "MIT",
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
-    "node-fetch": "^3.0.0"
+    "node-fetch": "^3.0.0",
+    "jsforce": "^1.10.1",
+    "node-sf-bulk2": "^0.0.18"
   },
   "devDependencies": {
     "dotenv": "^10.0.0"

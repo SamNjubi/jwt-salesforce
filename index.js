@@ -73,6 +73,6 @@ export const accessTokenFromJWT = async (args) => {
     }).then(resp => resp.json()).then(data => {
         console.log(data);
         if (data.error) throw Error(`Error caught (${data.error})`);
-        return data.access_token;
+        return data;
     })
 }

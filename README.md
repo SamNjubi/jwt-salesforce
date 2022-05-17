@@ -43,7 +43,7 @@ keys:
 npm install
 node access_token.js
 ```
-
+// Requires node v18+ 
 ## Exchange the JWT for an access token
 
 Using Postman or similar post to the OAuth token-endpoint of Salesforce specifying a `grant_type`-parameter of `urn:ietf:params:oauth:grant-type:jwt-bearer` and specify the JWT in the `assertion` parameter.
