@@ -3,5 +3,5 @@
 *.key
 *.pub
 *.jks
-.env
+# .env
 node_modules
