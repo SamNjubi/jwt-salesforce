@@ -41,7 +41,8 @@ keys:
 
 ```
 npm install
-node access_token.js
+node access_token.js --- run this to add records to salesforce objects i.e. add accounts to account object
+node file_upload.js --- run this to upload files and connect them with the specific record i.e a specific account, in this scenario Axios Account 3 is used with its linkedEntityId hardcoded.
 ```
 // Requires node v18+ 
 ## Exchange the JWT for an access token
@@ -72,3 +73,7 @@ Send a get request with the response id as the request url
 ## credit
 
 "author": "Mikkel Flindt Heisterberg (mheisterberg@salesforce.com)",
+
+## Resources
+1. https://www.pjgalbraith.com/uploading-files-to-salesforce-using-jsforce/
+2. https://www.kindacode.com/article/reading-content-from-pdf-and-csv-files-using-node-js/

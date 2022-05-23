@@ -20,15 +20,11 @@ jwt.generateJWT({
     subject,
     privateKey
 }).then(token => {
-    console.log(`JWT\n${token}`);
     return jwt.accessTokenFromJWT({
         token,
         audience
     })
 }).then(data => {
-    console.log(`Access token\n${data.access_token}`);
-    console.log(data.instance_url);
-
     (async () => {
         if (process.env.CLIENT_ID && process.env.PATH_PRIVATE_KEY) {
             var conn = new jsforce.Connection({
