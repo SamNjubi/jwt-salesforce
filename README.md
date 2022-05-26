@@ -77,3 +77,57 @@ Send a get request with the response id as the request url
 ## Resources
 1. https://www.pjgalbraith.com/uploading-files-to-salesforce-using-jsforce/
 2. https://www.kindacode.com/article/reading-content-from-pdf-and-csv-files-using-node-js/
+
+
+## Single file upload - file_upload.js
+
+// 1. Authenticate
+         // generate JWT - generateJWT() -
+            // - inputs: issuer, audience, subject, privateKey path
+            // - outputs: signedjwt
+         // generate access Token from the signed JWT - accessTokenFromJWT() 
+            // - inputs: signed JWT token, audience
+            // - outputs: instance_url, access_token
+
+    // Loop through this 4 processes below for batch upload
+
+// 2. Read file from local directory - readFileSync()
+        // inputs: - file uri
+        // outputs: - file buffer
+
+// 3. Upload file with content version and get response with id - uploadContentVersion()
+        // inputs are 
+            // - connection from jsforce with instance_url and accessToken
+            // - file buffer
+            // - file metadata including: - title, pathonclient, contentlocation
+        // outputs are:
+            // - upload id
+
+// 4. Get response id of uploaded file and query to get contentdocumentid - getContentId()
+        // inputs are:
+            // - upload id
+            // - select query formed using the upload id
+        // outputs are:
+            // - contentdocumentid
+
+// 5. Link uploaded file i.e contentdocumentid with the id of the linkedentity  - linkfileaccount()
+        // inputs are:
+            // - contentdocumentid
+            // - linkedentityid
+            // - visibility status
+        // outputs are:
+            // - success upload
+            // - operation id
+
+## Batch fileupload - batch-upload.js
+// 1. get xlsx path and extract files to array
+// 2. create a connection via jsforce
+// 3. loop through the files array and carry out the same procedure as the single file upload
+
+
+ - loop through the mapped csv file containing 
+    1. file uri
+    2. title
+    3. path on client
+    4. contentlocation
+    5. linked entity id
