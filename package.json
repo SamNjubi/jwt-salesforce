@@ -1,0 +1,22 @@
+{
+  "name": "salesforce-batch-upload",
+  "version": "1.1.0",
+  "description": "Batch upload of files to an org and linking them to different records",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "batch_upload": "node batch_upload.js"
+  },
+  "author": "Samuel Njubi Macharia (samuel.macharia@thejitu.com)",
+  "license": "MIT",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "jsforce": "^1.10.1",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^3.0.0",
+    "node-sf-bulk2": "^0.0.18"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
