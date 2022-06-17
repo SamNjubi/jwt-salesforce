@@ -71,6 +71,7 @@ export const accessTokenFromJWT = async (args) => {
         },
         "body": `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${args.token}`
     }).then(resp => resp.json()).then(data => {
+        console.log(data);
         if (data.error) throw Error(`Error caught (${data.error})`);
         return data;
     })

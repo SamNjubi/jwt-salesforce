@@ -1,9 +1,12 @@
 import request from 'request';
 import {config as config_env} from "dotenv";
+import fs from 'fs';
 
 config_env();
 
 const version = process.env.VERSION;
+const errorlog = fs.openSync('./error-logs.json', 'w');
+const errors = [];
 
 export const uploadContentVersion = async (conn, metadata, file) => {
   return new Promise((resolve, reject) => {
@@ -48,7 +51,7 @@ export const getContentId = async (conn, query) => {
       if (err)
         reject(err)
 
-      resolve(JSON.parse(response.body).records? JSON.parse(response.body).records[0].ContentDocumentId: 'None')
+      resolve(JSON.parse(response?.body).records? JSON.parse(response?.body).records[0].ContentDocumentId: 'None')
     })
   })
 } 
@@ -68,3 +71,11 @@ export const linkfileaccount = async(conn, metadata) => {
     })
   })
 } 
+export const errorLog = (file, uploadcvidresp) => {
+  const error = {
+    id: file.NEW_ACCOUNT_ID,
+    resp: uploadcvidresp
+  }
+  errors.push(error);
+  fs.writeFileSync('./error-logs', JSON.stringify(temp))
+}
