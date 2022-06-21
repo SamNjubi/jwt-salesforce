@@ -119,7 +119,7 @@ for (i = 0, j = mappingsUpload.length; i < j; i += chunk) {
         continue;
       }
     }
-    if (file.uploadcvid && file.uploadcdid && !file.linkedid) {
+    if (file.uploadcdid && !file.linkedid) {
       try {
         console.log('Linking file id');
         const accountmeta = {
